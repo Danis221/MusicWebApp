@@ -7,18 +7,18 @@ public class User {
     private final String login;
     private  String password;
 
-    public User(int id, String firstName, String lastName, String login, String password) {
+    public User(int id,String login, String firstName, String lastName, String password) {
         this.id = id;
+        this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.login = login;
         this.password = password;
     }
 
-    public User(String firstName, String lastName, String login, String password) {
+    public User(String login, String firstName, String lastName,  String password) {
+        this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.login = login;
         this.password = password;
     }
 

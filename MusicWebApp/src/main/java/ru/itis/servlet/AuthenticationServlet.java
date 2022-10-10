@@ -5,10 +5,8 @@ import ru.itis.dao.impl.UserDaoImpl;
 import ru.itis.models.User;
 import ru.itis.service.UserService;
 import ru.itis.service.impl.UserServiceImpl;
-import ru.itis.util.PasswordUtil;
 
 
-import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +22,7 @@ public class AuthenticationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("authentication.html");
+        resp.sendRedirect("auth.ftl");
     }
 
     @Override
@@ -32,15 +30,16 @@ public class AuthenticationServlet extends HttpServlet {
         String login = req.getParameter("login");
         String firstName = req.getParameter("firstname");
         String lastName = req.getParameter("lastname");
-        String password = PasswordUtil.encrypt(req.getParameter("password"));
+        String password = req.getParameter("password");
 
         User existsUserWithLogin = userDao.get(login);
 
         if(existsUserWithLogin == null) {
-            userService.save(new User(login, lastName, firstName, password));
+            userService.save(new User(login, firstName, lastName, password));
             resp.sendRedirect("/login");
         } else {
-            resp.sendRedirect("/authentication");
+            req.setAttribute("error", "this login already exists");
+            req.getRequestDispatcher("auth.ftl").forward(req, resp);
         }
     }
 }

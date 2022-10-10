@@ -5,6 +5,7 @@ import ru.itis.dao.impl.UserDaoImpl;
 import ru.itis.models.User;
 import ru.itis.util.PasswordUtil;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
@@ -15,22 +16,23 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.sendRedirect("login.html");
+        resp.sendRedirect("login.ftl");
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String login = req.getParameter("login");
-        String password = PasswordUtil.encrypt(req.getParameter("password"));
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        String enteredLogin = req.getParameter("login");
+        String enteredPassword = req.getParameter("password");
         String rememberMe = req.getParameter("_remember_me");
 
+        String encryptPassword = PasswordUtil.encrypt(enteredPassword);
 
-        User tempUser = userDao.get(login);
+        User tempUser = userDao.get(enteredLogin);
         if (tempUser != null) {
-            String enteredLogin = tempUser.getLogin();
-            String enteredPassword = tempUser.getPassword();
+            String login = tempUser.getLogin();
+            String password = tempUser.getPassword();
 
-            if (enteredLogin.equals(login) && enteredPassword.equals(password)) {
+            if (enteredLogin.equals(login) && password.equals(encryptPassword)) {
                 HttpSession httpSession = req.getSession();
                 httpSession.setAttribute("username", login);
                 httpSession.setMaxInactiveInterval(60 * 60);
@@ -40,12 +42,14 @@ public class LoginServlet extends HttpServlet {
                     httpCookie.setMaxAge(24 * 60 * 60);
                     resp.addCookie(httpCookie);
                 }
-                resp.sendRedirect("/authentication");
+                resp.sendRedirect("/");
             } else {
-                resp.sendRedirect("/login");
+                req.setAttribute("error", "Invalid login or password");
+                req.getRequestDispatcher("login.ftl").forward(req, resp);
             }
         } else {
-            resp.sendRedirect("/login");
+            req.setAttribute("error", "User with this login does not exist");
+            req.getRequestDispatcher("login.ftl").forward(req, resp);
         }
 
     }

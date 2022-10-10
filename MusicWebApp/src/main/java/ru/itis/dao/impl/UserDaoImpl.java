@@ -24,7 +24,7 @@ public class UserDaoImpl implements Dao<User> {
     //language=SQL
     private static final String SQL_SELECT_BY_ID = "select * from users where id = ?";
 
-    private static final String SQL_SAVE = "INSERT into users (first_name, last_name, login, password) VALUES (?, ?, ?, ?);";
+    private static final String SQL_SAVE = "INSERT into users (login,first_name, last_name, password) VALUES (?, ?, ?, ?);";
 
     //language=SQL
     public static final String SQL_SELECT_BY_LOGIN = "select * from users where login = ?";
@@ -37,9 +37,9 @@ public class UserDaoImpl implements Dao<User> {
         try {
             return new User(
                     resultSet.getInt("id"),
+                    resultSet.getString("login"),
                     resultSet.getString("first_name"),
                     resultSet.getString("last_name"),
-                    resultSet.getString("login"),
                     resultSet.getString("password"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -91,9 +91,9 @@ public class UserDaoImpl implements Dao<User> {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE);
-            preparedStatement.setString(1, user.getFirstName());
-            preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setString(3, user.getLogin());
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getFirstName());
+            preparedStatement.setString(3, user.getLastName());
             preparedStatement.setString(4, user.getPassword());
 
 
