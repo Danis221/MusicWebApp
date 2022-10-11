@@ -1,4 +1,5 @@
 <html lang="en">
+
 <#include "base.ftl">
 
 <#macro title>${status_code}</#macro>

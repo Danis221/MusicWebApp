@@ -6,32 +6,43 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- CSS File -->
-    <link rel="stylesheet" href="form.css"></head>
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/login.css">
+
+</head>
+
 <body>
+
+<h1 class="text">What kinda music</h1>
 
 <div class="login">
 
-    <h1 class="text-center">What kinda music</h1>
-    <p style ="color:red"><#if error??> ${error}</#if></p>
+
+
+
     <form class="needs-validation" action="login" method="post">
+        Login:
+        <p style="color:red"><#if error??> ${error}</#if></p>
         <div class="form-group was-validated">
             <label class="form-label" for="login">Login User </label>
-            <input type="text" name="login" id= "login" placeholder="login"/>
+            <input required type="text" name="login" id="login" placeholder="login"/>
 
         </div>
         <div class="form-group was-validated">
             <label class="form-label" for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="password"/>
+            <input required type="password" name="password" id="password" placeholder="password"/>
 
         </div>
         <div class="form-group form-check">
-            <input type="checkbox" name="_remember_me" id="check" checked />
+            <input type="checkbox" name="_remember_me" id="check" checked/>
             <label class="form-check-label" for="check">Remember me </label>
         </div>
-        <input class="btn btn-dark"  type="submit" value="Log in">
+        <input class="btn btn-dark" type="submit" value="Log in">
     </form>
 
 </div>
 
+
 </body>
+
 </html>
