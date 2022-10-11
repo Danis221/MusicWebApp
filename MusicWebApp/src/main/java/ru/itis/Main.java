@@ -1,8 +1,13 @@
 package ru.itis;
 
+import ru.itis.dao.Dao;
+import ru.itis.dao.impl.ArticleDaoImpl;
 import ru.itis.dao.impl.UserDaoImpl;
+import ru.itis.models.Article;
 import ru.itis.models.User;
+import ru.itis.service.ArticleService;
 import ru.itis.service.UserService;
+import ru.itis.service.impl.ArticleServiceImpl;
 import ru.itis.service.impl.UserServiceImpl;
 import ru.itis.util.PasswordUtil;
 
@@ -10,20 +15,13 @@ import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
-        UserDaoImpl userDao = new UserDaoImpl();
-        User user = new User("Denis", "asdf", "123", "123");
         UserService userService = new UserServiceImpl();
-       //userService.save(user);
-      //  System.out.println(userDao.get("123").getLogin());
-        System.out.println(userDao.get("123").getPassword());
-        String l = "asdf";
-        String p = PasswordUtil.encrypt( l);
-        System.out.println(PasswordUtil.encrypt("123"));
-
-//        System.out.println(l + "   " + p);
-//
-//        System.out.println(p.equals(userDao.get("asdf").getPassword()));
-//        System.out.println(userDao.get("asdf").getPassword().equals(p));
+        User user = new User("a","aw","af","fsa");
+        ArticleService articleService = new ArticleServiceImpl();
+        Dao<Article> articleDao = new ArticleDaoImpl();
+        Article article = new Article(2,"Animal Collective ", "https://www.youtube.com/watch?v=WU60gQMTHJY&ab_channel=Be", "Animal Collective have canceled a European tour that was due to start next month", "rock");
+        articleService.save(article);
+        System.out.println(articleDao.get(7));
 
     }
 }

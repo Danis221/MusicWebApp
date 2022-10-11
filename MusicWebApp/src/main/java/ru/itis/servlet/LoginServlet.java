@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 
             if (enteredLogin.equals(login) && password.equals(encryptPassword)) {
                 HttpSession httpSession = req.getSession();
-                httpSession.setAttribute("username", login);
+                httpSession.setAttribute("login", login);
                 httpSession.setMaxInactiveInterval(60 * 60);
 
                 if (rememberMe.equals("on")) {
