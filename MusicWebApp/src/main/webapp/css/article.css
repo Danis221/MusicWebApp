@@ -1,0 +1,21 @@
+
+
+.bar-line {
+    display: flex;
+    padding: 20px;
+    background-color: whitesmoke;
+}
+
+.bar-line__left {
+    flex: 1;
+
+}
+
+.bar-line__right {
+    flex: 1;
+    margin-right: 20px;
+}
+
+a {
+    color: black;
+}

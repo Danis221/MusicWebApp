@@ -24,6 +24,6 @@ form.addEventListener("submit", (e) => {
     if (errors.length > 0) {
         e.preventDefault();
         errorMessage.toggleAttribute('hidden');
-        errorMessage.innerText = errors.join(", ");
+        errorMessage.innerText = errors.join(",\r\n");
     }
 })

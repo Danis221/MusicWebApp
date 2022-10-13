@@ -47,7 +47,7 @@ public class UserDaoImpl implements Dao<User> {
     };
 
     @Override
-    public User get(int id) {
+    public User get(int id) {//TODO: optional
         try {
             PreparedStatement statement = connection.prepareStatement(SQL_SELECT_BY_ID);
             statement.setInt(1, id);

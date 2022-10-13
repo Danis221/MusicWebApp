@@ -5,12 +5,11 @@ form {
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
+    margin-top: 20px;
 }
 
 body {
-    background-image: url("../img/The_Cure.jpg");
-    background-color: white;
-    background-repeat: no-repeat;
+    background-image: url("../img/pasosh.jpg");
 }
 
 textarea {

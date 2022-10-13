@@ -23,13 +23,13 @@ public class PostgresConnectionUtil {
         }
 
         if (connection == null) {
-            try {
-                Class.forName(properties.getProperty("db.driver"));
+            try {Class.forName(properties.getProperty("db.driver"));
                 connection = DriverManager.getConnection(
                         properties.getProperty("db.url"),
                         properties.getProperty("db.username"),
                         properties.getProperty("db.password")
                 );
+
             } catch (ClassNotFoundException | SQLException e) {
                 throw new RuntimeException(e);
             }

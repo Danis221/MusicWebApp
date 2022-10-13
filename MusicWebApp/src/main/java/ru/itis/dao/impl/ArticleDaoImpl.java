@@ -16,7 +16,7 @@ public class ArticleDaoImpl implements Dao<Article> {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
 
     //language=SQL
-    private static final String SQL_SELECT_ALL = "select * from articles;";
+    private static final String SQL_SELECT_ALL = "select * from articles ORDER BY article_id DESC;";
 
     //language=SQL
     private static final String SQL_SELECT_BY_ID = "select * from articles where article_id = ?";

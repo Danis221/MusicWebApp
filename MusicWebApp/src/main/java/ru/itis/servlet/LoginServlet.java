@@ -41,8 +41,10 @@ public class LoginServlet extends HttpServlet {
                     Cookie httpCookie = new Cookie("username", login);
                     httpCookie.setMaxAge(24 * 60 * 60);
                     resp.addCookie(httpCookie);
+                    resp.sendRedirect("/");
+                } else {
+                    resp.sendRedirect("/");
                 }
-                resp.sendRedirect("/");
             } else {
                 req.setAttribute("error", "Invalid login or password");
                 req.getRequestDispatcher("login.ftl").forward(req, resp);

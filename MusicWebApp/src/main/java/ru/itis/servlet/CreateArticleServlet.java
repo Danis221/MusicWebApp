@@ -37,7 +37,7 @@ public class CreateArticleServlet extends HttpServlet {
         String genre = req.getParameter("genre");
 
         User user = userDao.get(login);
-        if ((name != null || !name.equals("")) && (videoFromYouTube != null || !videoFromYouTube.equals("")) && (text != null || !text.equals("")) && (genre != null || !genre.equals("")))
+        if (name.trim().length() != 0  || videoFromYouTube.trim().length() != 0 || text.trim().length() != 0 || genre.trim().length() != 0)
         {
             Article newArticle = new Article(user.getId(), name, videoFromYouTube, text, genre);
 
@@ -45,7 +45,8 @@ public class CreateArticleServlet extends HttpServlet {
             resp.sendRedirect("/");
 
         } else {
-            resp.sendRedirect("/createArticle");
+            req.setAttribute("error", "something is not filled");
+            req.getRequestDispatcher("createArticle.ftl").forward(req, resp);
         }
 
 

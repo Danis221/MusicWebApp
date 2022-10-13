@@ -45,4 +45,8 @@
         <location>/404.html</location>
     </error-page>
 
+    <welcome-file-list>
+        <welcome-file>index.ftl</welcome-file>
+    </welcome-file-list>
+
 </web-app>

@@ -3,14 +3,14 @@ package ru.itis.models;
 public class Article {
     private int articleId;
 
-    private int userId;
+    private final int userId;
     private final String name;
     private final String videoFromYouTube;
     private final String text;
     private final String genre;
 
     public Article(int articleId, int userId, String name, String videoFromYouTube, String text, String genre) {
-        this.articleId = articleId;
+        this.userId = userId;
         this.articleId = articleId;
         this.name = name;
         this.videoFromYouTube = videoFromYouTube;
