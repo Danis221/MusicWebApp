@@ -39,4 +39,10 @@ public class UserServiceImpl implements UserService {
         User u = userDao.get(login);
         return new UserDto(u.getFirstName(), u.getLastName(), u.getLogin());
     }
+
+    @Override
+    public void update(User user) {
+        user.setPassword(PasswordUtil.encrypt(user.getPassword()));
+        userDao.update(user);
+    }
 }

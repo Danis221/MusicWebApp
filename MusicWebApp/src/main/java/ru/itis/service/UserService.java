@@ -15,4 +15,6 @@ public interface UserService {
 
     UserDto get(String login);
 
+    void update(User user);
+
 }

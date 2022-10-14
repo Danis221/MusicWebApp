@@ -29,6 +29,8 @@ public class UserDaoImpl implements Dao<User> {
     //language=SQL
     public static final String SQL_SELECT_BY_LOGIN = "select * from users where login = ?";
 
+    //language=SQL
+    public static final String SQL_UPDATE = "UPDATE users SET  first_name = ?, last_name = ?, password = ? where login = ?;";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
     private final Connection connection = PostgresConnectionUtil.getConnection();
@@ -101,6 +103,26 @@ public class UserDaoImpl implements Dao<User> {
         } catch (SQLException e) {
             LOGGER.warn("Failed execute save query", e);
         }
+    }
+
+    @Override
+    public void update(User user) {
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(SQL_UPDATE);
+
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getPassword());
+            statement.setString(4, user.getLogin());
+
+             statement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override

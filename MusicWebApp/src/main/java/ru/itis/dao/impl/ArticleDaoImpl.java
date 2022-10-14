@@ -103,4 +103,9 @@ public class ArticleDaoImpl implements Dao<Article> {
             LOGGER.warn("Failed execute save query", e);
         }
     }
+
+    @Override
+    public void update(Article article) {
+
+    }
 }
