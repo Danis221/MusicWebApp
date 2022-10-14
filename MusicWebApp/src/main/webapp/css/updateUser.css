@@ -6,8 +6,10 @@ form {
     -webkit-transform: translate(-50%, -50%);
 }
 body {
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
     background-image: url("../img/monkey_sony_walkman.jpg");
-    background-size: 100%;
     background-color: white;
 }
 
