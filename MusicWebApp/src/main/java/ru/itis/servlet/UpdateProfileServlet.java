@@ -1,6 +1,5 @@
 package ru.itis.servlet;
 
-import ru.itis.models.Article;
 import ru.itis.models.User;
 import ru.itis.service.UserService;
 import ru.itis.service.impl.UserServiceImpl;
@@ -14,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "updateProfileServlet", urlPatterns = "/updateProfile")
-public class updateProfileServlet extends HttpServlet {
+public class UpdateProfileServlet extends HttpServlet {
 
     private final UserService userService = new UserServiceImpl();
     @Override
