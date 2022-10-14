@@ -24,15 +24,10 @@ public class UpdateProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        String login = (String) session.getAttribute("login");
         String firstName = req.getParameter("firstname");
         String lastName = req.getParameter("lastname");
         String password = req.getParameter("password");
-        String login = (String) session.getAttribute("login");
-
-        System.out.println(login);
-        System.out.println(firstName);
-        System.out.println(lastName);
-        System.out.println(password);
 
         if (firstName.trim().length() != 0 && lastName.trim().length() != 0 && password.trim().length() != 0) {
             User updateUser = new User(login, firstName, lastName, password);
@@ -40,7 +35,7 @@ public class UpdateProfileServlet extends HttpServlet {
             req.getRequestDispatcher("/").forward(req, resp);
         } else {
             req.setAttribute("error", "something is not filled");
-            resp.sendRedirect("/updateProfile");
+            req.getRequestDispatcher("updateProfile.ftl").forward(req, resp);
         }
     }
 }

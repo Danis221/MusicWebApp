@@ -1,4 +1,5 @@
 form {
+    margin-left: 190px;
     padding: 20px;
     background-color: white;
     position: fixed; top: 50%; left: 50%;
@@ -6,6 +7,7 @@ form {
 }
 body {
     background-image: url("../img/monkey_sony_walkman.jpg");
+    background-size: 100%;
     background-color: white;
 }
 
