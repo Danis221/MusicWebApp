@@ -37,12 +37,12 @@ public class LoginServlet extends HttpServlet {
                 httpSession.setAttribute("login", login);
                 httpSession.setMaxInactiveInterval(60 * 60);
 
-                if (rememberMe.equals("on")) {
+                if (rememberMe != null){
                     Cookie httpCookie = new Cookie("username", login);
                     httpCookie.setMaxAge(24 * 60 * 60);
                     resp.addCookie(httpCookie);
                     resp.sendRedirect("/");
-                } else {
+                } else{
                     resp.sendRedirect("/");
                 }
             } else {
