@@ -20,7 +20,7 @@
         <input id="name" name="name"><br>
         <label for="videoFromYouTube"> link youtube:</label><br>
         <input type="text" id="videoFromYouTube" name="videoFromYouTube"
-               value="https://www.youtube.com/watch?v=lOKmaffc_nw&ab_channel=VanCat"><br>
+               value="https://www.youtube.com/embed/dQw4w9WgXcQ?list=PLtg6VBytbdL4O6cpBMbAoliCKLcddtHLF"><br>
         <label for="text">text:</label><br>
         <textarea id="text" name="text"></textarea><br>
 
