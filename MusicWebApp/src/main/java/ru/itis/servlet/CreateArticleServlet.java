@@ -37,7 +37,7 @@ public class CreateArticleServlet extends HttpServlet {
         String genre = req.getParameter("genre");
 
         User user = userDao.get(login);
-        if (name.trim().length() != 0  || videoFromYouTube.trim().length() != 0 || text.trim().length() != 0 || genre.trim().length() != 0)
+        if (name.trim().length() != 0  && videoFromYouTube.trim().length() != 0 && text.trim().length() != 0 && genre.trim().length() != 0)
         {
             Article newArticle = new Article(user.getId(), name, videoFromYouTube, text, genre);
 
