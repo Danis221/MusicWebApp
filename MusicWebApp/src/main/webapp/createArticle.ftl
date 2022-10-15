@@ -6,25 +6,7 @@
 
     <#macro title>Create article</#macro>
     <link rel="stylesheet" href="css/createArticl.css">
-    <script defer src="js/validatorForCreateArticle.js"></script>
-    <script type="text/javascript">
-        const button = document.getElementById("button");
-        const text = document.getElementById("text");
-
-        let msg
-        text.addEventListener('focusout', event => {
-            let length = text.value.split(" ");
-
-            if (length.length > 420) {
-                msg = 'the number of words in the article should not exceed 420!';
-                button.style.display = "none";
-                alert(msg);
-            } else {
-                button.style.display = "block"
-            }
-
-        })
-    </script>
+    <script  src="js/validatorForCreateArticle.js"></script>
 </head>
 
 <body>

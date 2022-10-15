@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title><@title></@title></title>
     <div class="header">
-        <a href="" class="logo">
+        <a href="/" class="logo">
             <img alt="What kinda music" src="img/logo.jpg"
                  width=45" height="20">
         </a>
@@ -15,8 +15,7 @@
             <a class="active" href="/">Home</a>
             <a href="/createArticle">Create article</a>
             <a href="/articles">Articles</a>
-            <a href="/authentication">SignUp</a>
-            <a href="/logout" id="logout">Logout</a>
+            <a href="/profile">Profile</a>
         </div>
     </div>
 
