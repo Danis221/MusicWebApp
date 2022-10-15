@@ -15,3 +15,31 @@ h1{
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px #5d008b;
     font-size: 30px;
 }
+
+#logout {
+    background-color: #ee5959;
+    position: absolute;
+    padding: 10px 20px;
+    margin-left: 30px;
+    margin-top: 10px;
+    top: 40%;
+    right: 2%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#updateProfile{
+    background-color: whitesmoke;
+    position: fixed;
+    padding: 10px 20px;
+    margin-left: 30px;
+    margin-top: 30px;
+    top: 25%;
+    right: 2%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn a {
+    color: black;
+}
