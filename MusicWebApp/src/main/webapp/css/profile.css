@@ -16,26 +16,22 @@ h1{
     font-size: 30px;
 }
 
+.btn {
+    position: fixed;
+    top: 5%;
+    right: 2%;
+}
+
 #logout {
     background-color: #ee5959;
-    position: absolute;
-    padding: 10px 20px;
-    margin-left: 30px;
-    margin-top: 10px;
-    top: 40%;
-    right: 2%;
+    padding: 10px 15px;
     border-radius: 10px;
     cursor: pointer;
 }
 
 #updateProfile{
     background-color: whitesmoke;
-    position: fixed;
-    padding: 10px 20px;
-    margin-left: 30px;
-    margin-top: 30px;
-    top: 25%;
-    right: 2%;
+    padding: 10px 15px;
     border-radius: 10px;
     cursor: pointer;
 }
