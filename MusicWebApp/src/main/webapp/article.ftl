@@ -23,7 +23,7 @@
 
         <div class="bar-line">
             <div class="bar-line__left">
-                <iframe width="420" height="315"
+                <iframe width="640" height="360"
                         src=" ${article.videoFromYouTube}">
                 </iframe>
             </div>
