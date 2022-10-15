@@ -16,7 +16,7 @@
 <#macro content>
 
 
-    <form action="updateProfile" method="post" id="form">
+    <form action="updateProfile" method="post" id="form" enctype="multipart/form-data">
         <p style="color:red"><#if error??>${error}<br></#if></p>
         <p style="color:red" id="errorMessage" hidden></p>
 
@@ -30,6 +30,10 @@
 
         Password:
         <input id="password" type="password" name="password"/>
+        <br>
+
+        Avatar:
+        <input type="file" name="file">
         <br>
 
         <input class="button" type="submit" value="Update">

@@ -28,14 +28,6 @@ label {
     display: block;
 }
 
-select {
-    display: inline-block;
-    width: 100px;
-    height: 25px;
-    line-height: 20px;
-    position: relative;
-}
-
 input, label {
     display: block;
 }
