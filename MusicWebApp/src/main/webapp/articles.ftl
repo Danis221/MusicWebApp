@@ -5,6 +5,21 @@
 
     <#macro title>Articles</#macro>
     <link rel="stylesheet" href="css/article.css">
+    <script>
+        let btn = document.querySelector('.btn')
+
+        function scroll() {
+            if (window.pageYOffset > 20) {
+                btn.style.opacity = '1'
+            } else { btn.style.opacity = '0' }
+        }
+
+        btn.onclick = function () {
+            window.scrollTo(0,0)
+        }
+
+        window.onscroll = scroll
+    </script>
 </head>
 <body>
 
@@ -32,14 +47,10 @@
                     <div class="bar-line__right-text">${a.text}</div>
                 </div>
             </div>
-
-
-            </p>
-
-
         </div>
 
     </#list>!
+    <span class="btn"><a>To top &#128316;</a></span>
 </#macro>
 </body>
 
