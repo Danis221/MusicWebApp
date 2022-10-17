@@ -3,6 +3,7 @@ package ru.itis.dao.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.itis.dao.Dao;
+import ru.itis.dao.UserDao;
 import ru.itis.models.User;
 import ru.itis.util.PostgresConnectionUtil;
 
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class UserDaoImpl implements Dao<User> {
+public class UserDaoImpl implements UserDao {
 
     //language=SQL
     private static final String SQL_SELECT_ALL_USERS = "select * from users;";
@@ -24,13 +25,13 @@ public class UserDaoImpl implements Dao<User> {
     //language=SQL
     private static final String SQL_SELECT_BY_ID = "select * from users where id = ?";
 
-    private static final String SQL_SAVE = "INSERT into users (login,first_name, last_name, password) VALUES (?, ?, ?, ?);";
+    private static final String SQL_SAVE = "INSERT into users (login, first_name, last_name, password, image) VALUES (?, ?, ?, ?, ?);";
 
     //language=SQL
     public static final String SQL_SELECT_BY_LOGIN = "select * from users where login = ?";
 
     //language=SQL
-    public static final String SQL_UPDATE = "UPDATE users SET  first_name = ?, last_name = ?, password = ? where login = ?;";
+    public static final String SQL_UPDATE = "UPDATE users SET  first_name = ?, last_name = ?, password = ?, image = ? where login = ?;";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
     private final Connection connection = PostgresConnectionUtil.getConnection();
@@ -42,7 +43,8 @@ public class UserDaoImpl implements Dao<User> {
                     resultSet.getString("login"),
                     resultSet.getString("first_name"),
                     resultSet.getString("last_name"),
-                    resultSet.getString("password"));
+                    resultSet.getString("password"),
+                    resultSet.getString("image"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -97,6 +99,7 @@ public class UserDaoImpl implements Dao<User> {
             preparedStatement.setString(2, user.getFirstName());
             preparedStatement.setString(3, user.getLastName());
             preparedStatement.setString(4, user.getPassword());
+            preparedStatement.setString(5, user.getImage());
 
 
             preparedStatement.executeUpdate();
@@ -115,6 +118,7 @@ public class UserDaoImpl implements Dao<User> {
             statement.setString(2, user.getLastName());
             statement.setString(3, user.getPassword());
             statement.setString(4, user.getLogin());
+            statement.setString(5, user.getImage());
 
              statement.executeUpdate();
 
@@ -144,5 +148,4 @@ public class UserDaoImpl implements Dao<User> {
             return null;
         }
     }
-
 }

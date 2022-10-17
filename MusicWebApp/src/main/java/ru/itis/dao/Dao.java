@@ -9,8 +9,6 @@ public interface Dao<T> {
 
     T get(int id);
 
-    T get(String value);
-
     List<T> getAll();
 
     void save(T t);
