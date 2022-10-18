@@ -15,6 +15,7 @@
             <a class="active" href="/">Home</a>
             <a href="/createArticle">Create article</a>
             <a href="/articles">Articles</a>
+            <a href="/events">Events</a>
             <a href="/profile">Profile</a>
         </div>
     </div>
