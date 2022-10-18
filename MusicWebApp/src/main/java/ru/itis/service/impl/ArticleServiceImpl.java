@@ -1,5 +1,6 @@
 package ru.itis.service.impl;
 
+import ru.itis.dao.ArticleDao;
 import ru.itis.dao.Dao;
 import ru.itis.dao.impl.ArticleDaoImpl;
 import ru.itis.dto.UserDto;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class ArticleServiceImpl implements ArticleService {
 
-    private final Dao<Article> articleDao = new ArticleDaoImpl();
+    private final ArticleDao articleDao = new ArticleDaoImpl();
 
 
     @Override
@@ -27,5 +28,10 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void save(Article article) {
         articleDao.save(article);
+    }
+
+    @Override
+    public List<Article> getArticlesWhereGenre(String genre) {
+        return articleDao.getAllWhereGenre(genre);
     }
 }

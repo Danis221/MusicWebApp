@@ -26,10 +26,9 @@ public class ArticleDaoImpl implements ArticleDao {
     private static final String SQL_SAVE = "INSERT into articles (user_id, name, video, text, genre ) VALUES(?, ?, ?, ?, ?);";
 
     //language=SQL
-    public static final String SQL_SELECT_ALL_WHERE_GENRE = "select * from articles where genre = ?;";
+    private static final String SQL_SELECT_ALL_WHERE_GENRE = "select * from articles where genre = ? ORDER BY article_id DESC;";
 
-    public static final String SQL_UPDATE = "UPDATE article SET  user_id = ?, name = ?, video = ?, text = ?, genre = ?  where article_id = ?;";
-
+    private static final String SQL_UPDATE = "UPDATE article SET  user_id = ?, name = ?, video = ?, text = ?, genre = ?  where article_id = ?;";
     private final Connection connection = PostgresConnectionUtil.getConnection();
 
     private static final Function<ResultSet, Article> articleMapper = resultSet -> {

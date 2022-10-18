@@ -13,4 +13,7 @@ public interface ArticleService {
     Article get(int id);
 
     void save(Article article);
+
+    List<Article> getArticlesWhereGenre(String genre);
+
 }
