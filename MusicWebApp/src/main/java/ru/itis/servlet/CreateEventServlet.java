@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+
 
 @WebServlet(name = "createEventServlet", urlPatterns = "/createEvent")
 public class CreateEventServlet extends HttpServlet {
@@ -24,14 +26,16 @@ public class CreateEventServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String performer = req.getParameter("performer");
-        String concertDate = req.getParameter("concertDate");
+        String concertDate =  req.getParameter("concertDate");
         String price = req.getParameter("price");
         String venue = req.getParameter("venue");
 
+
         if (price.trim().length() != 0 && performer.trim().length() != 0 && concertDate.trim().length() != 0 && venue.trim().length() != 0) {
-            Event event = new Event(performer, concertDate, Integer.parseInt(price), venue);
+            Event event = new Event(performer, java.sql.Date.valueOf(concertDate), Integer.parseInt(price), venue);
             eventService.save(event);
             resp.sendRedirect("/");
+
         } else  {
             req.setAttribute("error", "something is not filled");
             req.getRequestDispatcher("createEvent.ftl").forward(req, resp);

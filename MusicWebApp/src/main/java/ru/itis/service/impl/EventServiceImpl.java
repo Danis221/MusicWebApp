@@ -5,6 +5,7 @@ import ru.itis.dao.impl.EventDaoImpl;
 import ru.itis.models.Event;
 import ru.itis.service.EventService;
 
+import java.sql.Date;
 import java.util.List;
 
 public class EventServiceImpl implements EventService {
@@ -22,5 +23,10 @@ public class EventServiceImpl implements EventService {
     @Override
     public void save(Event event) {
         eventDao.save(event);
+    }
+
+    @Override
+    public List<Event> getAllBySettings(Date startDate, Date endDate, Integer price) {
+        return eventDao.getAllBySettings(startDate, endDate, price);
     }
 }

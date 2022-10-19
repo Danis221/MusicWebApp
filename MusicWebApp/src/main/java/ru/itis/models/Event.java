@@ -1,15 +1,15 @@
 package ru.itis.models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Event {
     private  int event_id;
     private final String performer;
-    private final  String concertDate;
+    private final Date concertDate;
     private final  int price;
     private final  String venue;
 
-    public Event(int event_id, String performer, String concertDate, int price, String venue) {
+    public Event(int event_id, String performer, Date concertDate, int price, String venue) {
         this.event_id = event_id;
         this.performer = performer;
         this.concertDate = concertDate;
@@ -17,7 +17,7 @@ public class Event {
         this.venue = venue;
     }
 
-    public Event(String performer, String concertDate, int price, String venue) {
+    public Event(String performer, Date concertDate, int price, String venue) {
         this.performer = performer;
         this.concertDate = concertDate;
         this.price = price;
@@ -32,7 +32,7 @@ public class Event {
         return performer;
     }
 
-    public String getConcertDate() {
+    public Date getConcertDate() {
         return concertDate;
     }
 
@@ -42,5 +42,16 @@ public class Event {
 
     public String getVenue() {
         return venue;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "event_id=" + event_id +
+                ", performer='" + performer + '\'' +
+                ", concertDate=" + concertDate +
+                ", price=" + price +
+                ", venue='" + venue + '\'' +
+                '}';
     }
 }
