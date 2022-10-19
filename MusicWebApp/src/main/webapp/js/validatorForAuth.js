@@ -24,7 +24,7 @@ form.addEventListener("submit", (e) => {
         errors.push("password is too easy")
     }
 
-    if(!username.value.match(name)) {
+    if(!firstname.value.match(name)) {
         errors.push("firstname is too weird")
     }
 
