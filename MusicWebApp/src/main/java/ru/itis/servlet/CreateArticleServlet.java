@@ -1,6 +1,6 @@
 package ru.itis.servlet;
 
-import ru.itis.dao.Dao;
+import ru.itis.dao.UserDao;
 import ru.itis.dao.impl.UserDaoImpl;
 import ru.itis.models.Article;
 import ru.itis.models.User;
@@ -19,7 +19,7 @@ import java.io.IOException;
 public class CreateArticleServlet extends HttpServlet {
 
     private final ArticleService articleService = new ArticleServiceImpl();
-    private final Dao<User> userDao = new UserDaoImpl();
+    private final UserDao userDao = new UserDaoImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

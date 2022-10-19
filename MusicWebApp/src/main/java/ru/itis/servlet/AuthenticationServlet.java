@@ -1,10 +1,12 @@
 package ru.itis.servlet;
 
 import ru.itis.dao.Dao;
+import ru.itis.dao.UserDao;
 import ru.itis.dao.impl.UserDaoImpl;
 import ru.itis.models.User;
 import ru.itis.service.UserService;
 import ru.itis.service.impl.UserServiceImpl;
+import ru.itis.util.UserImageUtil;
 
 
 import javax.servlet.ServletException;
@@ -12,14 +14,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
 
 @WebServlet(name = "authenticationServlet", urlPatterns = "/authentication")
 public class AuthenticationServlet extends HttpServlet {
 
     private final UserService userService = new UserServiceImpl();
-    private final Dao<User> userDao = new UserDaoImpl();
-
+    private final UserDao userDao = new UserDaoImpl();
+    private final UserImageUtil userImageUtil = new UserImageUtil();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("auth.ftl").forward(req, resp);
@@ -31,6 +34,9 @@ public class AuthenticationServlet extends HttpServlet {
         String firstName = req.getParameter("firstname");
         String lastName = req.getParameter("lastname");
         String password = req.getParameter("password");
+//        Part part = req.getPart("file");
+
+//        String image = userImageUtil.saveImageOnCloudinary(part);
 
         User existsUserWithLogin = userDao.get(login);
 

@@ -1,6 +1,7 @@
 package ru.itis.servlet;
 
 import ru.itis.dao.Dao;
+import ru.itis.dao.UserDao;
 import ru.itis.dao.impl.UserDaoImpl;
 import ru.itis.models.User;
 import ru.itis.util.PasswordUtil;
@@ -12,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet(name = "loginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
-    private final Dao<User> userDao = new UserDaoImpl();
+    private final UserDao userDao = new UserDaoImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
