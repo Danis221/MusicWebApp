@@ -9,6 +9,31 @@
     <link rel="stylesheet" href="css/auth.css">
     <link rel="stylesheet" href="css/login.css">
 
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#submitLogin').click(function () {
+                var user = $('#login').val();
+                var pwd = $('#password').val();
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/login.ftl",
+                    data: {"user": user, "password": pwd},
+                    success: function (data, textStatus) {
+                        if (data.redirect) {
+                            window.location.href = data.redirect;
+                        } else {
+                            $("#form").replaceWith(data.form);
+                        }
+                    }
+
+
+                });
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -16,8 +41,6 @@
 <h1 class="text">What kinda music</h1>
 
 <div class="login">
-
-
 
 
     <form class="needs-validation" action="login" method="post">
@@ -37,7 +60,7 @@
             <input type="checkbox" name="_remember_me" id="check" checked/>
             <label class="form-check-label" for="check">Remember me </label>
         </div>
-        <input class="btn btn-dark" type="submit" value="Log in">
+        <input class="btn btn-dark" type="submit" value="Log in" id="submitLogin">
     </form>
 
 </div>
