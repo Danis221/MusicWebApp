@@ -16,6 +16,7 @@
             <a href="/createArticle">Create article</a>
             <a href="/articles">Articles</a>
             <a href="/events">Events</a>
+            <a href="/forum">Forum</a>
             <a class="active" href="about.ftl">About site</a>
             <a href="/profile">Profile</a>
         </div>
