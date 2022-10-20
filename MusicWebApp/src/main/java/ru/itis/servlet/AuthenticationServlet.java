@@ -1,12 +1,12 @@
 package ru.itis.servlet;
 
-import ru.itis.dao.Dao;
+
 import ru.itis.dao.UserDao;
 import ru.itis.dao.impl.UserDaoImpl;
 import ru.itis.models.User;
 import ru.itis.service.UserService;
 import ru.itis.service.impl.UserServiceImpl;
-import ru.itis.util.UserImageUtil;
+
 
 
 import javax.servlet.ServletException;
@@ -22,7 +22,6 @@ public class AuthenticationServlet extends HttpServlet {
 
     private final UserService userService = new UserServiceImpl();
     private final UserDao userDao = new UserDaoImpl();
-    private final UserImageUtil userImageUtil = new UserImageUtil();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("auth.ftl").forward(req, resp);

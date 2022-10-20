@@ -1,6 +1,7 @@
 package ru.itis.service.impl;
 
 import ru.itis.dao.Dao;
+import ru.itis.dao.UserDao;
 import ru.itis.dao.impl.UserDaoImpl;
 import ru.itis.dto.UserDto;
 import ru.itis.models.User;
@@ -12,7 +13,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
-    private final Dao<User> userDao = new UserDaoImpl();
+    private final UserDao userDao = new UserDaoImpl();
 
     @Override
     public List<UserDto> getAll() {

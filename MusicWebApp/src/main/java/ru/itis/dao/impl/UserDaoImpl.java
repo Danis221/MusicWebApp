@@ -43,8 +43,7 @@ public class UserDaoImpl implements UserDao {
                     resultSet.getString("login"),
                     resultSet.getString("first_name"),
                     resultSet.getString("last_name"),
-                    resultSet.getString("password"),
-                    resultSet.getString("image"));
+                    resultSet.getString("password"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -99,7 +98,6 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(2, user.getFirstName());
             preparedStatement.setString(3, user.getLastName());
             preparedStatement.setString(4, user.getPassword());
-            preparedStatement.setString(5, user.getImage());
 
 
             preparedStatement.executeUpdate();
@@ -118,7 +116,6 @@ public class UserDaoImpl implements UserDao {
             statement.setString(2, user.getLastName());
             statement.setString(3, user.getPassword());
             statement.setString(4, user.getLogin());
-            statement.setString(5, user.getImage());
 
              statement.executeUpdate();
 
