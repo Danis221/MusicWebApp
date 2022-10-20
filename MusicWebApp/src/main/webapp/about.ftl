@@ -23,7 +23,7 @@
         }
 
         .carousel-caption h5 {
-            font-size: 100px;
+            font-size: 60px;
         }
 
         .carousel-item {
@@ -48,6 +48,8 @@
                     aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -69,6 +71,13 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Don't miss events. Our site is full of new and interesting events</h5>
                     <p>Vot <a href="events">Events</a> </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="img/The-Beatles.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Chat on our forum about music. There are many interesting people here.</h5>
+                    <p>Our <a href="forum">Forum</a> </p>
                 </div>
             </div>
         </div>
