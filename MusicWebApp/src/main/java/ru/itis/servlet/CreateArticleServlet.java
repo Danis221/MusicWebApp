@@ -2,10 +2,13 @@ package ru.itis.servlet;
 
 import ru.itis.dao.UserDao;
 import ru.itis.dao.impl.UserDaoImpl;
+import ru.itis.dto.UserDto;
 import ru.itis.models.Article;
 import ru.itis.models.User;
 import ru.itis.service.ArticleService;
+import ru.itis.service.UserService;
 import ru.itis.service.impl.ArticleServiceImpl;
+import ru.itis.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +22,6 @@ import java.io.IOException;
 public class CreateArticleServlet extends HttpServlet {
 
     private final ArticleService articleService = new ArticleServiceImpl();
-    private final UserDao userDao = new UserDaoImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,13 +37,10 @@ public class CreateArticleServlet extends HttpServlet {
         String videoFromYouTube = req.getParameter("videoFromYouTube");
         String text = req.getParameter("text");
         String genre = req.getParameter("genre");
-
-        User user = userDao.get(login);
-        if (name.trim().length() != 0  && videoFromYouTube.trim().length() != 0 && text.trim().length() != 0 && genre.trim().length() != 0)
+        Article newArticle = new Article(login, name, videoFromYouTube, text, genre);
+        if (articleService.articleVerification(newArticle))
         {
-            Article newArticle = new Article(user.getId(), name, videoFromYouTube, text, genre);
-
-            articleService.save(newArticle);
+            articleService.createArticle(newArticle);
             resp.sendRedirect("/");
 
         } else {

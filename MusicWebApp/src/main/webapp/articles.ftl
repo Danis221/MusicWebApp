@@ -50,7 +50,8 @@
                 <a href="/article?articleId=${a.articleId}">
                     <h1>${a.name}</h1>
                 </a><br>
-                ${a.genre}
+                created by ${a.userLogin} <br>
+                genre: ${a.genre}
 
 
                 <div class="bar-line">

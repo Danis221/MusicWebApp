@@ -3,14 +3,14 @@ package ru.itis.models;
 public class Article {
     private int articleId;
 
-    private final int userId;
+    private final String userLogin;
     private final String name;
     private final String videoFromYouTube;
     private final String text;
     private final String genre;
 
-    public Article(int articleId, int userId, String name, String videoFromYouTube, String text, String genre) {
-        this.userId = userId;
+    public Article(int articleId, String userLogin, String name, String videoFromYouTube, String text, String genre) {
+        this.userLogin = userLogin;
         this.articleId = articleId;
         this.name = name;
         this.videoFromYouTube = videoFromYouTube;
@@ -18,8 +18,8 @@ public class Article {
         this.genre = genre;
     }
 
-    public Article(int userId, String name, String videoFromYouTube, String text, String genre) {
-        this.userId = userId;
+    public Article(String userLogin, String name, String videoFromYouTube, String text, String genre) {
+        this.userLogin = userLogin;
         this.name = name;
         this.text = text;
         this.videoFromYouTube = videoFromYouTube;
@@ -42,23 +42,12 @@ public class Article {
         return text;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getUserLogin() {
+        return userLogin;
     }
 
     public String getGenre() {
         return genre;
     }
 
-    @Override
-    public String toString() {
-        return "Article{" +
-                "articleId=" + articleId +
-                ", userId=" + userId +
-                ", name='" + name + '\'' +
-                ", videoFromYouTube='" + videoFromYouTube + '\'' +
-                ", text='" + text + '\'' +
-                ", genre='" + genre + '\'' +
-                '}';
-    }
 }

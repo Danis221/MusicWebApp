@@ -16,4 +16,8 @@ public interface ArticleService {
 
     List<Article> getArticlesWhereGenre(String genre);
 
+    void createArticle(Article article);
+
+    boolean articleVerification(Article article);
+
 }

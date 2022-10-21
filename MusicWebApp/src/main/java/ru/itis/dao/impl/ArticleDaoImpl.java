@@ -23,19 +23,19 @@ public class ArticleDaoImpl implements ArticleDao {
     private static final String SQL_SELECT_BY_ID = "select * from articles where article_id = ?";
 
     //language=SQL
-    private static final String SQL_SAVE = "INSERT into articles (user_id, name, video, text, genre ) VALUES(?, ?, ?, ?, ?);";
+    private static final String SQL_SAVE = "INSERT into articles (user_login, name, video, text, genre ) VALUES(?, ?, ?, ?, ?);";
 
     //language=SQL
     private static final String SQL_SELECT_ALL_WHERE_GENRE = "select * from articles where genre = ? ORDER BY article_id DESC;";
 
-    private static final String SQL_UPDATE = "UPDATE article SET  user_id = ?, name = ?, video = ?, text = ?, genre = ?  where article_id = ?;";
+    private static final String SQL_UPDATE = "UPDATE article SET  user_login = ?, name = ?, video = ?, text = ?, genre = ?  where article_id = ?;";
     private final Connection connection = PostgresConnectionUtil.getConnection();
 
     private static final Function<ResultSet, Article> articleMapper = resultSet -> {
         try {
             return new Article(
                     resultSet.getInt("article_id"),
-                    resultSet.getInt("user_id"),
+                    resultSet.getString("user_login"),
                     resultSet.getString("name"),
                     resultSet.getString("video"),
                     resultSet.getString("text"),
@@ -89,7 +89,7 @@ public class ArticleDaoImpl implements ArticleDao {
     public void save(Article article) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE);
-            preparedStatement.setInt(1, article.getUserId());
+            preparedStatement.setString(1, article.getUserLogin());
             preparedStatement.setString(2, article.getName());
             preparedStatement.setString(3, article.getVideoFromYouTube());
             preparedStatement.setString(4, article.getText());
@@ -106,7 +106,7 @@ public class ArticleDaoImpl implements ArticleDao {
         try {
             PreparedStatement statement = connection.prepareStatement(SQL_UPDATE);
 
-            statement.setInt(1, article.getUserId());
+            statement.setString(1, article.getUserLogin());
             statement.setString(2, article.getName());
             statement.setString(3, article.getVideoFromYouTube());
             statement.setString(4, article.getText());
