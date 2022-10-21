@@ -17,9 +17,8 @@
 
         <h1>${article.name}</h1>
 
-
-        ${article.genre}
-
+        created by ${article.userLogin} <br>
+        genre: ${article.genre}
 
         <div class="bar-line">
             <div class="bar-line__left">
