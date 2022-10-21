@@ -47,4 +47,16 @@ public class PostServiceImpl implements PostService {
                 p -> new PostDto(p.getPostContent(), p.getCreated(), p.getUserLogin())
         ).collect(Collectors.toList());
     }
+
+    @Override
+    public boolean postVerification(Post post) {
+       String posContent = post.getPostContent();
+        return posContent != null && posContent.trim().length() !=0;
+    }
+
+    public void createPost(Post post) {
+        this.save(post);
+    }
+
+
 }

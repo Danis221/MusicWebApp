@@ -28,4 +28,16 @@ public class ForumServiceImpl implements ForumService {
     public void update(Forum forum) {
         forumDao.update(forum);
     }
+
+    @Override
+    public boolean forumVerification(Forum forum) {
+        String forumHeader = forum.getForumHeader();
+        String login = forum.getUserLogin();
+        return forumHeader.trim().length() != 0 && login.trim().length() != 0;
+    }
+
+    @Override
+    public void createForum(Forum forum) {
+        this.save(forum);
+    }
 }

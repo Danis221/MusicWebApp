@@ -22,6 +22,7 @@ public class ForumServlet extends HttpServlet {
     private final ForumService forumService = new ForumServiceImpl();
     private final UserDao userDao = new UserDaoImpl();
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("forum", forumService.getAll());
@@ -33,15 +34,14 @@ public class ForumServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String login = (String) session.getAttribute("login");
-
         String forumHeader = req.getParameter("forumHeader");
-        User user = userDao.get(login);
 
         long now = System.currentTimeMillis();
         Date sqlDate = new Date(now);
-        if (forumHeader.trim().length() != 0 && user != null) {
-            Forum form = new Forum(forumHeader, sqlDate, user.getLogin());
-            forumService.save(form);
+
+        Forum form = new Forum(forumHeader, sqlDate,login);
+        if (forumService.forumVerification(form)) {
+            forumService.createForum(form);
             req.getRequestDispatcher("/").forward(req, resp);
         } else {
             req.setAttribute("error", "not working");

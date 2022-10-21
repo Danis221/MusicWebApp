@@ -17,4 +17,8 @@ public interface PostService {
     public void update(Post post);
 
     List<PostDto> getAllByForumId(int forumId);
+
+    boolean postVerification(Post post);
+
+    void createPost(Post post);
 }

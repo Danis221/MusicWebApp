@@ -48,7 +48,7 @@ public class DiscussionServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String login = (String) session.getAttribute("login");
 
-        User user = userDao.get(login);
+
         String posContent = req.getParameter("posContent");
         String forumId = req.getParameter("forumId");
 
@@ -56,10 +56,9 @@ public class DiscussionServlet extends HttpServlet {
         long now = System.currentTimeMillis();
         Date sqlDate = new Date(now);
 
-//        System.out.println( forumId + " "+ posContent);posContent.trim().length() != 0
-        if ( forumId!=null && user != null && posContent != null) {
-            Post post = new Post(posContent, sqlDate, Integer.parseInt(forumId), user.getLogin());
-            postService.save(post);
+        Post post = new Post(posContent, sqlDate, Integer.parseInt(forumId), login);
+        if ( postService.postVerification(post)) {
+            postService.createPost(post);
             req.getRequestDispatcher("/").forward(req, resp);
         } else {
             req.setAttribute("error", "not working");
