@@ -25,13 +25,13 @@ public class UserDaoImpl implements UserDao {
     //language=SQL
     private static final String SQL_SELECT_BY_ID = "select * from users where id = ?";
 
-    private static final String SQL_SAVE = "INSERT into users (login, first_name, last_name, password, image) VALUES (?, ?, ?, ?, ?);";
+    private static final String SQL_SAVE = "INSERT into users (login, first_name, last_name, password) VALUES (?, ?, ?, ?);";
 
     //language=SQL
     public static final String SQL_SELECT_BY_LOGIN = "select * from users where login = ?";
 
     //language=SQL
-    public static final String SQL_UPDATE = "UPDATE users SET  first_name = ?, last_name = ?, password = ?, image = ? where login = ?;";
+    public static final String SQL_UPDATE = "UPDATE users SET  first_name = ?, last_name = ?, password = ? where login = ?;";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
     private final Connection connection = PostgresConnectionUtil.getConnection();

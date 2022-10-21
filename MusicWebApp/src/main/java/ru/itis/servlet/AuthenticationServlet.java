@@ -33,14 +33,9 @@ public class AuthenticationServlet extends HttpServlet {
         String firstName = req.getParameter("firstname");
         String lastName = req.getParameter("lastname");
         String password = req.getParameter("password");
-//        Part part = req.getPart("file");
 
-//        String image = userImageUtil.saveImageOnCloudinary(part);
-
-        User existsUserWithLogin = userDao.get(login);
-
-        if(existsUserWithLogin == null) {
-            userService.save(new User(login, firstName, lastName, password));
+        User user = new User(login, firstName, lastName, password);
+        if(userService.authentication(user)) {
             resp.sendRedirect("/login");
         } else {
             req.setAttribute("error", "this login already exists");

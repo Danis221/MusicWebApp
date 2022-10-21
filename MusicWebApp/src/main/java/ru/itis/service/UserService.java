@@ -4,7 +4,6 @@ import ru.itis.dto.UserDto;
 import ru.itis.models.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
     List<UserDto> getAll();
@@ -17,4 +16,6 @@ public interface UserService {
 
     void update(User user);
 
+    boolean authentication (User user);
+    boolean userVerification(String enteredLogin, String enteredPassword);
 }

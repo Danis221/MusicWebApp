@@ -1,6 +1,5 @@
 package ru.itis.service.impl;
 
-import ru.itis.dao.Dao;
 import ru.itis.dao.UserDao;
 import ru.itis.dao.impl.UserDaoImpl;
 import ru.itis.dto.UserDto;
@@ -9,7 +8,6 @@ import ru.itis.service.UserService;
 import ru.itis.util.PasswordUtil;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
@@ -45,5 +43,26 @@ public class UserServiceImpl implements UserService {
     public void update(User user) {
         user.setPassword(PasswordUtil.encrypt(user.getPassword()));
         userDao.update(user);
+    }
+
+    public boolean authentication (User user) {
+        User existsUserWithLogin = userDao.get(user.getLogin());
+
+        if(existsUserWithLogin == null) {
+            save(user);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean userVerification(String enteredLogin, String enteredPassword) {
+        String encryptPassword = PasswordUtil.encrypt(enteredPassword);
+        User tempUser = userDao.get(enteredLogin);
+        if (tempUser!= null) { //проверям что юссер с введеным логином существует
+            String password = tempUser.getPassword();
+            return password.equals(encryptPassword);
+        }
+        return false;
     }
 }
