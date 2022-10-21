@@ -17,5 +17,7 @@ public interface UserService {
     void update(User user);
 
     boolean authentication (User user);
-    boolean userVerification(String enteredLogin, String enteredPassword);
+    boolean userVerificationForLogin(String enteredLogin, String enteredPassword);
+
+    boolean userVerification(User user);
 }

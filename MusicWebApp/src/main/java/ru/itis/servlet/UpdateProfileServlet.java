@@ -29,8 +29,8 @@ public class UpdateProfileServlet extends HttpServlet {
         String lastName = req.getParameter("lastname");
         String password = req.getParameter("password");
 
-        if (firstName.trim().length() != 0 && lastName.trim().length() != 0 && password.trim().length() != 0) {
-            User updateUser = new User(login, firstName, lastName, password);
+        User updateUser = new User(login, firstName, lastName, password);
+        if (userService.userVerification(updateUser)) {
             userService.update(updateUser);
             req.getRequestDispatcher("/").forward(req, resp);
         } else {
