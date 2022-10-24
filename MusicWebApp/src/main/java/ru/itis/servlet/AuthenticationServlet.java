@@ -4,6 +4,7 @@ package ru.itis.servlet;
 import ru.itis.models.User;
 import ru.itis.service.UserService;
 import ru.itis.service.impl.UserServiceImpl;
+import ru.itis.util.validator.UserValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import java.io.IOException;
 public class AuthenticationServlet extends HttpServlet {
 
     private final UserService userService = new UserServiceImpl();
+    private final UserValidator userValidator = new UserValidator();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("auth.ftl").forward(req, resp);
@@ -29,8 +31,8 @@ public class AuthenticationServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         User user = new User(login, firstName, lastName, password);
-        if(userService.userVerification(user)) {
-            userService.authentication(user);
+        if(userValidator.userVerification(user)) {
+            userService.save(user);
             resp.sendRedirect("/login");
         } else {
             req.setAttribute("error", "this login already exists");

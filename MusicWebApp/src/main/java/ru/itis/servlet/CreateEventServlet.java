@@ -3,6 +3,7 @@ package ru.itis.servlet;
 import ru.itis.models.Event;
 import ru.itis.service.EventService;
 import ru.itis.service.impl.EventServiceImpl;
+import ru.itis.util.validator.EventValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,7 @@ import java.text.ParseException;
 public class CreateEventServlet extends HttpServlet {
 
     private final EventService eventService = new EventServiceImpl();
+    private final EventValidator eventValidator = new EventValidator();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,7 +33,7 @@ public class CreateEventServlet extends HttpServlet {
         String venue = req.getParameter("venue");
 
         Event event = new Event(performer, java.sql.Date.valueOf(concertDate), Integer.parseInt(price), venue);
-        if(eventService.eventVerification(event)){
+        if(eventValidator.eventVerification(event)){
             eventService.save(event);
             resp.sendRedirect("/");
         } else  {

@@ -45,32 +45,6 @@ public class UserServiceImpl implements UserService {
         userDao.update(user);
     }
 
-    public boolean authentication (User user) {
-        User existsUserWithLogin = userDao.get(user.getLogin());
 
-        if(existsUserWithLogin == null) {
-            save(user);
-            return true;
-        }
-        return false;
-    }
 
-    @Override
-    public boolean userVerificationForLogin(String enteredLogin, String enteredPassword) {
-        String encryptPassword = PasswordUtil.encrypt(enteredPassword);
-        User tempUser = userDao.get(enteredLogin);
-        if (tempUser!= null) { //проверям что юссер с введеным логином существует
-            String password = tempUser.getPassword();
-            return password.equals(encryptPassword);
-        }
-        return false;
-    }
-
-    @Override
-    public boolean userVerification(User user) {
-        String firstName = user.getFirstName();
-        String lastName = user.getFirstName();
-        String password = user.getPassword();
-        return firstName.trim().length() != 0 && lastName.trim().length() != 0 && password.trim().length() != 0;
-    }
 }

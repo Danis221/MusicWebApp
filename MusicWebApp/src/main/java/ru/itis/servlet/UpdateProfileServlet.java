@@ -3,6 +3,7 @@ package ru.itis.servlet;
 import ru.itis.models.User;
 import ru.itis.service.UserService;
 import ru.itis.service.impl.UserServiceImpl;
+import ru.itis.util.validator.UserValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import java.io.IOException;
 public class UpdateProfileServlet extends HttpServlet {
 
     private final UserService userService = new UserServiceImpl();
+    private final UserValidator userValidator = new UserValidator();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.sendRedirect("updateProfile.ftl");
@@ -30,7 +32,7 @@ public class UpdateProfileServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         User updateUser = new User(login, firstName, lastName, password);
-        if (userService.userVerification(updateUser)) {
+        if (userValidator.userVerification(updateUser)) {
             userService.update(updateUser);
             req.getRequestDispatcher("/").forward(req, resp);
         } else {

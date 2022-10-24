@@ -12,6 +12,7 @@ import ru.itis.service.UserService;
 import ru.itis.service.impl.ForumServiceImpl;
 import ru.itis.service.impl.PostServiceImpl;
 import ru.itis.service.impl.UserServiceImpl;
+import ru.itis.util.validator.PostValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +29,7 @@ public class DiscussionServlet extends HttpServlet {
     private final ForumService forumService = new ForumServiceImpl();
     private final UserService userService = new UserServiceImpl();
     private final PostService postService = new PostServiceImpl();
-    private final UserDao userDao = new UserDaoImpl();
+    private final PostValidator postVerification = new PostValidator();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -57,7 +58,7 @@ public class DiscussionServlet extends HttpServlet {
         Date sqlDate = new Date(now);
 
         Post post = new Post(posContent, sqlDate, Integer.parseInt(forumId), login);
-        if ( postService.postVerification(post)) {
+        if ( postVerification.postVerification(post)) {
             postService.createPost(post);
             req.getRequestDispatcher("/").forward(req, resp);
         } else {

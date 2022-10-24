@@ -9,6 +9,7 @@ import ru.itis.service.ArticleService;
 import ru.itis.service.UserService;
 import ru.itis.service.impl.ArticleServiceImpl;
 import ru.itis.service.impl.UserServiceImpl;
+import ru.itis.util.validator.ArticleValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +23,8 @@ import java.io.IOException;
 public class CreateArticleServlet extends HttpServlet {
 
     private final ArticleService articleService = new ArticleServiceImpl();
+
+    private final ArticleValidator articleVerification = new ArticleValidator();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,7 +41,7 @@ public class CreateArticleServlet extends HttpServlet {
         String text = req.getParameter("text");
         String genre = req.getParameter("genre");
         Article newArticle = new Article(login, name, videoFromYouTube, text, genre);
-        if (articleService.articleVerification(newArticle))
+        if (articleVerification.articleVerification(newArticle))
         {
             articleService.createArticle(newArticle);
             resp.sendRedirect("/");

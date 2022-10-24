@@ -18,7 +18,6 @@ public interface PostService {
 
     List<PostDto> getAllByForumId(int forumId);
 
-    boolean postVerification(Post post);
 
     void createPost(Post post);
 }

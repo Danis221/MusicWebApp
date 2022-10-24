@@ -6,6 +6,7 @@ import ru.itis.models.Forum;
 import ru.itis.models.User;
 import ru.itis.service.ForumService;
 import ru.itis.service.impl.ForumServiceImpl;
+import ru.itis.util.validator.ForumValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +21,7 @@ import java.sql.Date;
 @WebServlet(name = "forumServlet", urlPatterns = "/forum")
 public class ForumServlet extends HttpServlet {
     private final ForumService forumService = new ForumServiceImpl();
-    private final UserDao userDao = new UserDaoImpl();
+    private final ForumValidator forumValidator = new ForumValidator();
 
 
     @Override
@@ -40,7 +41,7 @@ public class ForumServlet extends HttpServlet {
         Date sqlDate = new Date(now);
 
         Forum form = new Forum(forumHeader, sqlDate,login);
-        if (forumService.forumVerification(form)) {
+        if (forumValidator.forumVerification(form)) {
             forumService.createForum(form);
             req.getRequestDispatcher("/").forward(req, resp);
         } else {

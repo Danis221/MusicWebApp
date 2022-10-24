@@ -30,12 +30,4 @@ public class EventServiceImpl implements EventService {
         return eventDao.getAllBySettings(startDate, endDate, price);
     }
 
-    @Override
-    public boolean eventVerification(Event event) {
-        String performer = event.getPerformer();
-        String venue = event.getVenue();
-        Date concertDate = event.getConcertDate();
-
-        return performer.trim().length() != 0 && concertDate != null && venue.trim().length() != 0;
-    }
 }

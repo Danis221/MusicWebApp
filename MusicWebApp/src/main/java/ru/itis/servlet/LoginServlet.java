@@ -2,6 +2,7 @@ package ru.itis.servlet;
 
 import ru.itis.service.UserService;
 import ru.itis.service.impl.UserServiceImpl;
+import ru.itis.util.validator.UserValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import java.io.IOException;
 @WebServlet(name = "loginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     private final UserService userService = new UserServiceImpl();
+    private final UserValidator userValidator = new UserValidator();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -24,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         String rememberMe = req.getParameter("_remember_me");
 
 
-        if (userService.userVerificationForLogin(enteredLogin, enteredPassword)) {
+        if (userValidator.userVerificationForLogin(enteredLogin, enteredPassword)) {
             HttpSession httpSession = req.getSession();
             httpSession.setAttribute("login", enteredLogin);
             httpSession.setMaxInactiveInterval(60 * 60);

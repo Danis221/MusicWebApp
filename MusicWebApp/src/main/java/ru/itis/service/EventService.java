@@ -12,5 +12,5 @@ public interface EventService {
 
     void save(Event Event);
     List<Event> getAllBySettings(Date startDate, Date endDate, Integer price);
-    boolean eventVerification(Event event);
+
 }

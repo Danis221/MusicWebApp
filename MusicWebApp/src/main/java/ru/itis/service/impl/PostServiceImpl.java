@@ -48,11 +48,7 @@ public class PostServiceImpl implements PostService {
         ).collect(Collectors.toList());
     }
 
-    @Override
-    public boolean postVerification(Post post) {
-       String posContent = post.getPostContent();
-        return posContent != null && posContent.trim().length() !=0;
-    }
+
 
     public void createPost(Post post) {
         this.save(post);

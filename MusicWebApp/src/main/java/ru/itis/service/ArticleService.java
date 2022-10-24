@@ -18,6 +18,6 @@ public interface ArticleService {
 
     void createArticle(Article article);
 
-    boolean articleVerification(Article article);
+
 
 }
