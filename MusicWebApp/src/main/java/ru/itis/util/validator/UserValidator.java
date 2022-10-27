@@ -24,11 +24,6 @@ public class UserValidator {
         String firstName = user.getFirstName();
         String lastName = user.getFirstName();
         String password = user.getPassword();
-        User tempUser = userDao.get(user.getLogin());
-        if (tempUser == null) {
-            return firstName.trim().length() != 0 && lastName.trim().length() != 0 && password.trim().length() != 0;
-        } else {
-            return false;
-        }
+        return firstName.trim().length() != 0 && lastName.trim().length() != 0 && password.trim().length() != 0;
     }
 }

@@ -29,8 +29,8 @@
         <br>
 
         Password:
-        <input id="password" type="password" name="password"/>
-        <br>
+        <input id="password" type="password" name="password" pattern="[0-9a-zA-Z]{6,}" title="password is too easy [0-9a-zA-Z]{6,}"  />
+
         <input class="button" type="submit" value="Update">
     </form>
 </#macro>
